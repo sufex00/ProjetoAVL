@@ -27,6 +27,7 @@ public:
     void balance(cell* &root);
     int isMore(int fist_num, int second_num);
     void buildAVL(cell* root);
+    int isAVL(cell* node);
 };
 
 #endif // TREEMANIPULATION_H

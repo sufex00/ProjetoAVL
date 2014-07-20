@@ -80,8 +80,9 @@ void TreeManipulation::insection(cell* root, cell *new_cell)
           else
           {
               insection(root->right,new_cell);
-               }
+          }
       }
+      this->buildTreeBalanceFator(root);
       if(new_cell->getElement()<root->getElement())
       {
           if(root->left==NULL)
@@ -175,19 +176,25 @@ void TreeManipulation::balance(cell *&root)
 {
     if(root->getSize()>=2||root->getSize()<=-2)
     {
-        if(root->getSize()>=2 && root->right->getSize()==-1)
+        if(root->right!=NULL)
         {
-            this->rotationRight(root->right);
-            this->rotationLeft(root);
+            if(root->getSize()>=2 && root->right->getSize()==-1)
+            {
+                this->rotationRight(root->right);
+                this->rotationLeft(root);
+            }
+            if(root->getSize()>=2 && root->right->getSize()>=0)
+            {
+                this->rotationLeft(root);
+            }
         }
+    }
+    if(root->left!=NULL)
+    {
         if(root->getSize()>=-2 && root->left->getSize()==1)
         {
             this->rotationLeft(root->left);
             this->rotationRight(root);
-        }
-        if(root->getSize()>=2 && root->right->getSize()>=0)
-        {
-            this->rotationLeft(root);
         }
         if(root->getSize()<=-2 && root->left->getSize()<=0)
         {
@@ -215,4 +222,41 @@ void TreeManipulation::buildAVL(cell *root)
 cell* TreeManipulation::getRoot()
 {
     return this->root;
+}
+
+int TreeManipulation::isAVL(cell *node)
+{
+    int boolReturnLeft=0;
+    int boolReturnRight=0;
+    if(node->left!= NULL)
+    {
+        if(abs(node->left->getSize())>=2)
+        {
+            boolReturnLeft=1;
+        }
+        else
+        {
+            this->isAVL(node->left);
+        }
+    }
+    else
+    {
+        boolReturnLeft=0;
+    }
+    if(node->right!= NULL)
+    {
+        if(abs(node->right->getSize())>=2)
+        {
+            boolReturnRight=1;
+        }
+        else
+        {
+            this->isAVL(node->right);
+        }
+    }
+    else
+    {
+        boolReturnRight=0;
+    }
+    return boolReturnLeft+boolReturnRight;
 }

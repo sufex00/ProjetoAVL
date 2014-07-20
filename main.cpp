@@ -4,16 +4,25 @@
 
 int main()
 {
-    cell* root=new cell(30);
+    cell* root=new cell(4);
     TreeManipulation tree=TreeManipulation(root);
-    tree.insection(tree.getRoot(),new cell(20));
-    tree.insection(tree.getRoot(),new cell(9));
-    tree.insection(tree.getRoot(),new cell(10));
+    tree.insection(tree.getRoot(),new cell(2));
+    tree.insection(tree.getRoot(),new cell(6));
+    tree.insection(tree.getRoot(),new cell(1));
+    tree.insection(tree.getRoot(),new cell(3));
     tree.insection(tree.getRoot(),new cell(5));
+    tree.insection(tree.getRoot(),new cell(7));
+    tree.insection(tree.getRoot(),new cell(15));
+    tree.insection(tree.getRoot(),new cell(14));
+    tree.insection(tree.getRoot(),new cell(13));
+    while(tree.isAVL(tree.getRoot())!=0)
+    {
+        tree.buildAVL(tree.getRoot());
+    }
     tree.insection(tree.getRoot(),new cell(50));
-    tree.insection(tree.getRoot(),new cell(60));
-    tree.insection(tree.getRoot(),new cell(21));
-    tree.buildTreeBalanceFator(tree.getRoot());
-    tree.buildAVL(root);
+    while(tree.isAVL(tree.getRoot())!=0)
+    {
+        tree.buildAVL(tree.getRoot());
+    }
     tree.printTree(tree.getRoot());
 }
