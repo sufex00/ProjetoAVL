@@ -11,22 +11,21 @@ class cell
     * * * * * * * * * * * * * * * * */
 
     int size;    //tamanho da cell
-    char element;//elemento
+    int element;//elemento da cell
+    int balanceFator;//fator de balanceamento
 
 public:
 
     cell* left;  //Aponta para o filho a esquerda
     cell* right; //Aponta para o filho a direita
-    bool leaf;   //Verifica se a celula e folha
-
     /* * * * * * * * * * * * * * * * *
     *
     * CONSTRUTOR
     *
     * * * * * * * * * * * * * * * * */
     cell();
-    cell(int size, cell* left, cell* right);//construtor de nós que não e folha
-    cell(char element, int size); //construtor das folhas
+    cell(int element, cell* left, cell* right);//construtor de nós que não e folha
+    cell(int element); //construtor das folhas
 
     /* * * * * * * * * * * * * * * * *
     *
@@ -39,7 +38,9 @@ public:
     int getSize();
 
     //Retorna elemento que pertence a folha
-    char getElement();
+    int getElement();
+
+    void setSize(int size);
 
 };
 

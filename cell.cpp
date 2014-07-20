@@ -4,37 +4,28 @@ cell::cell()
 {
 
 }
-cell::cell(int size, cell* left, cell* right)
+cell::cell(int element,cell* left, cell* right)
 {
     {
-        this->size=size;
-        leaf=false;
+        this->element=element;
         this->left=left;
         this->right=right;
     }
 }
-cell::cell(char element, int size)
+cell::cell(int element)
 {
-    this->size=size;
     this->element=element;
-    leaf=true;
+    this->left=NULL;
+    this->right=NULL;
 }
 
 int cell::getSize()
 {
     return this->size;
 }
-char cell::getElement()
+int cell::getElement()
 {
-    if(this->leaf)
-    {
-        return this->element;
-
-    }
-    else
-    {
-        return ' ';
-    }
+    return this->element;
 }
 
 void cell::setSize(int size)
