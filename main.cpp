@@ -24,7 +24,7 @@ int main()
     tree.insection(tree.getRoot(),new cell(80));
     tree.insection(tree.getRoot(),new cell(8));
     root=tree.getRoot();
-    tree.remove(root,new cell(14));
+    tree.remove(root,new cell(4));
     while(tree.isAVL(tree.getRoot())!=0)
     {
         tree.buildAVL(tree.getRoot());

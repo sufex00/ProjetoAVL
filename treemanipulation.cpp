@@ -303,7 +303,6 @@ void TreeManipulation::remove(cell *&root, cell *old_cell)
            if(root->right!=NULL && root->left!=NULL)
            {
                cell *temp=root;
-               qDebug()<<temp->getElement();
                while(temp->right->right!=NULL)
                {
                    temp=temp->right;
