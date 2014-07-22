@@ -28,6 +28,8 @@ public:
     int isMore(int fist_num, int second_num);
     void buildAVL(cell* root);
     int isAVL(cell* node);
+    void remove(cell *&root, cell* old_cell);
+
 };
 
 #endif // TREEMANIPULATION_H

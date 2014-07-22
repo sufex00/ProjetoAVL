@@ -76,18 +76,22 @@ void TreeManipulation::insection(cell* root, cell *new_cell)
           if(root->right==NULL)
           {
               root->right=new_cell;
+              this->buildAVL(this->root);
           }
           else
           {
+
               insection(root->right,new_cell);
           }
       }
+
       this->buildTreeBalanceFator(root);
       if(new_cell->getElement()<root->getElement())
       {
           if(root->left==NULL)
           {
               root->left=new_cell;
+              this->buildAVL(this->root);
           }
           else
           {
@@ -103,7 +107,7 @@ void TreeManipulation::printTree(cell* node , int level )
     {
         printTree(node->left, level +1);
     }
-    cout << qPrintable(QString("\t").repeated(level)) <<"ele="<< node->getElement() <<"size="<<node->getSize()<<endl;
+    cout << qPrintable(QString("\t").repeated(level)) <<"element="<< node->getElement()<< "(" <<node->getSize()<<")"<<endl;
     if(node->right!= NULL)
     {
         printTree(node->right,level +1);
@@ -259,4 +263,58 @@ int TreeManipulation::isAVL(cell *node)
         boolReturnRight=0;
     }
     return boolReturnLeft+boolReturnRight;
+}
+
+void TreeManipulation::remove(cell *&root, cell *old_cell)
+{
+   if(root->getElement()<old_cell->getElement())
+   {
+       if(root->right!=NULL)
+       {
+           remove(root->right,old_cell);
+       }
+   }
+   if(root->getElement()>old_cell->getElement())
+   {
+       if(root->left!=NULL)
+       {
+           remove(root->left,old_cell);
+       }
+   }
+   if(root->getElement()==old_cell->getElement())
+   {
+       if(root->right==NULL && root->left==NULL)
+       {
+           root=NULL;
+       }
+       else
+       {
+           if(root->right==NULL)
+           {
+               root=root->left;
+           }
+           else
+           {
+               if(root->left==NULL)
+               {
+                   root=root->right;
+               }
+           }
+           if(root->right!=NULL && root->left!=NULL)
+           {
+               cell *temp=root;
+               qDebug()<<temp->getElement();
+               while(temp->right->right!=NULL)
+               {
+                   temp=temp->right;
+               }
+               root->setElement(temp->right->getElement());
+               temp->right=NULL;
+
+           }
+       }
+       this->buildTreeBalanceFator(this->root);
+
+   }
+
 }

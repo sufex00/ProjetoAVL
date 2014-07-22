@@ -33,4 +33,7 @@ void cell::setSize(int size)
     this->size=size;
 }
 
-
+void cell::setElement(int element)
+{
+    this->element=element;
+}

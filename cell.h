@@ -33,6 +33,8 @@ public:
     *
     * * * * * * * * * * * * * * * * */
 
+    //modefica o conteudo da celula
+    void setElement(int element);
 
     //Retorna tamanho da Arvore
     int getSize();
